@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Attendance System</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        h2 { margin-bottom: 20px; color: #333; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        select, input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; }
+        .radio-group { display: flex; gap: 15px; margin-top: 5px; }
+        .radio-label { display: flex; align-items: center; gap: 5px; font-weight: normal; cursor: pointer; }
+        button { width: 100%; padding: 12px; background: #007bff; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #0056b3; }
+        .link-btn { display: block; text-align: center; margin-top: 15px; color: #007bff; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Mark Attendance</h2>
+    <form id="attendanceForm">
+        <div class="form-group">
+            <label for="teacherName">Teacher Name</label>
+            <select id="teacherName" required>
+                <option value="">-- Select Teacher --</option>
+                <option value="John Doe">John Doe</option>
+                <option value="Jane Smith">Jane Smith</option>
+                <option value="Alex Johnson">Alex Johnson</option>
+                <option value="Emily Davis">Emily Davis</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="attendanceDate">Date</label>
+            <input type="date" id="attendanceDate" required>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="status" value="Present" checked> Present</label>
+                <label class="radio-label"><input type="radio" name="status" value="Absent"> Absent</label>
+                <label class="radio-label"><input type="radio" name="status" value="Late"> Late</label>
+            </div>
+        </div>
+
+        <button type="submit">Submit Attendance</button>
+    </form>
+    <a href="https://ripanabc.github.io/page/index12.html" target="_blank" class="link-btn">View Attendance Dashboard →</a>
+</div>
+
+<script>
+    // Set today's date automatically as default
+    document.getElementById('attendanceDate').value = new Date().toISOString().split('T')[0];
+
+    document.getElementById('attendanceForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('teacherName').value;
+        const date = document.getElementById('attendanceDate').value;
+        const status = document.querySelector('input[name="status"]:checked').value;
+        const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+        // Retrieve existing records or create empty array
+        let records = JSON.parse(localStorage.getItem('attendanceRecords')) || [];
+
+        // Save new record
+        records.push({ name, date, status, timestamp });
+        localStorage.setItem('attendanceRecords', JSON.stringify(records));
+
+        alert('Attendance submitted successfully!');
+        this.reset();
+        document.getElementById('attendanceDate').value = new Date().toISOString().split('T')[0];
+    });
+</script>
+
+</body>
+</html>

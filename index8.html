@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .card { padding: 20px; border: 1px solid #ddd; background: #f9f9f9; display: inline-block; }
+        span { font-weight: bold; color: #333; }
+        a { display: inline-block; margin-top: 15px; color: #007BFF; }
+    </style>
+</head>
+<body>
+
+    <h2>Submitted Form Results</h2>
+
+    <div class="card">
+        <p><strong>Username:</strong> <span id="outputUsername">Loading...</span></p>
+        <p><strong>Email:</strong> <span id="outputEmail">Loading...</span></p>
+    </div>
+
+    <br>
+    <a href="index.html">← Go Back to Form</a>
+
+    <script>
+        // Execute logic once the DOM structure is fully parsed
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Extract values using key names declared on Page 1
+            const username = localStorage.getItem('storedUsername');
+            const email = localStorage.getItem('storedEmail');
+
+            // Insert values into the target placeholder elements
+            if (username && email) {
+                document.getElementById('outputUsername').textContent = username;
+                document.getElementById('outputEmail').textContent = email;
+            } else {
+                // Fallback message if no data exists in localStorage
+                document.getElementById('outputUsername').textContent = "No data found";
+                document.getElementById('outputEmail').textContent = "No data found";
+            }
+
+            // Optional: Clear stored data so it doesn't linger permanently 
+            // localStorage.removeItem('storedUsername');
+            // localStorage.removeItem('storedEmail');
+        });
+    </script>
+
+</body>
+</html>

@@ -70,15 +70,6 @@
             tableBody.appendChild(row);
         });
     }
-
-    // Clear records logic
-    document.getElementById('clearData').addEventListener('click', function() {
-        if (confirm('Are you sure you want to clear all records?')) {
-            localStorage.removeItem('attendanceRecords');
-            loadAttendance();
-        }
-    });
-
     // Load data on page load
     window.onload = loadAttendance;
 

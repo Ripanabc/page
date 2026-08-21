@@ -22,33 +22,56 @@
 <body>
 
 <div class="card">
-    <h2>Mark Attendance</h2>
+    <h2>Teachers' Attendance</h2>
     <form id="attendanceForm">
         <div class="form-group">
             <label for="teacherName">Teacher Name</label>
             <select id="teacherName" required>
-                <option value="">-- Select Teacher --</option>
-                <option value="John Doe">John Doe</option>
-                <option value="Jane Smith">Jane Smith</option>
-                <option value="Alex Johnson">Alex Johnson</option>
-                <option value="Emily Davis">Emily Davis</option>
-            </select>
+            <option value="">-- Select Teacher --</option> 
+                <option value="Nuruddin sir">Nuruddin sir</option>
+                <option value="Fatema madam">Fatema madam </option>
+                <option value="Sony madam">Sony madam</option>
+                <option value="Ripan sir">Ripan sir</option>  
+                <option value="Alim sir">Alim sir</option> 
+                <option value="Alamin sar">Alamin sir</option>   
+                <option value="Ayrin madam">Ayrin madam</option>              
+                <option value="Momotaz madan">Momotaz medam</option>
+                <option value="Lucky madam">Lucky madam</option>
+                <option value="Plaboni madam">Plabony madam  </option>  
+                 <option value="Akram sir">Akram sir </option> 
+                <option value="Mustakim sir">Mustakim sir</option>
+                <option value="Dilruba madam">Dilruba madam</option>
+                <option value="Habiba madam">Habiba madam</option>
+                <option value="Atik sir">Atik sir</option>
+                <option value="Mahfuz sir">Mahfuz sir  </option>
+                <option value="kalam">kalam sir</option>
+                <option value="Ajis sir">Ajis sir</option>
+                
+                </select>
         </div>
 
         <div class="form-group">
             <label for="attendanceDate">Date</label>
             <input type="date" id="attendanceDate" required>
         </div>
-
-        <div class="form-group">
-            <label>Status</label>
-            <div class="radio-group">
-                <label class="radio-label"><input type="radio" name="status" value="Present" checked> Present</label>
-                <label class="radio-label"><input type="radio" name="status" value="Absent"> Absent</label>
-                <label class="radio-label"><input type="radio" name="status" value="Late"> Late</label>
-            </div>
-        </div>
-
+      <div class="form-group">
+      <label>Departure time</label>
+      <div class="radio-group">
+      <label class="radio-label"><input type="radio" name="status" value="2:00" checked> 2:00</label>
+      <label class="radio-label"><input type="radio" name="status" value="2:30"> 2:30</label>
+      <label class="radio-label"><input type="radio" name="status" value="3:00"> 3:00</label>
+      <label class="radio-label"><input type="radio" name="status" value="Break"> Break</label>
+      
+      </div>
+      </div>
+      <div class="form-group">
+      <label>Missing class</label>
+      <div class="radio-group">
+      <label class="radio-label"><input type="radio" name="status1" value="0subject" checked>0subject</label>
+      <label class="radio-label"><input type="radio" name="status1" value="1subject"> 1subject</label>
+      <label class="radio-label"><input type="radio" name="status1" value="2subject"> 2subject</label>
+      </div>
+      </div>
         <button type="submit">Submit Attendance</button>
     </form>
     <a href="https://ripanabc.github.io/page/index12.html" target="_blank" class="link-btn">View Attendance Dashboard →</a>
@@ -64,13 +87,15 @@
         const name = document.getElementById('teacherName').value;
         const date = document.getElementById('attendanceDate').value;
         const status = document.querySelector('input[name="status"]:checked').value;
+        const status1 = document.querySelector('input[name="status1"]:checked').value;
+        
         const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
         // Retrieve existing records or create empty array
         let records = JSON.parse(localStorage.getItem('attendanceRecords')) || [];
 
         // Save new record
-        records.push({ name, date, status, timestamp });
+        records.push({ name, date, status, status1, timestamp });
         localStorage.setItem('attendanceRecords', JSON.stringify(records));
 
         alert('Attendance submitted successfully!');
@@ -79,5 +104,6 @@
     });
 </script>
 
-</body>
+</bod>
 </html>
+                                     

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
 <div class="container">
     <div class="header-section">
         <h2>Teacher Attendance Records</h2>
-           <button class="clear-btn" id="clearData"></button>
+        <button class="clear-btn" id="clearData">Clear All Records</button>
     </div>
 
     <table>
@@ -37,7 +37,8 @@
                 <th>Teacher Name</th>
                 <th>Date</th>
                 <th>Submission Time</th>
-                <th>Status</th>
+                <th>Departure</th>
+                <th>Missing Class</th>
             </tr>
         </thead>
         <tbody id="attendanceTableBody">
@@ -66,10 +67,20 @@
                 <td>${record.date}</td>
                 <td>${record.timestamp}</td>
                 <td><span class="badge ${record.status}">${record.status}</span></td>
+                <td><span class="badge ${record.status1}">${record.status1}</span></td>             
             `;
             tableBody.appendChild(row);
         });
     }
+
+    // Clear records logic
+    document.getElementById('clearData').addEventListener('click', function() {
+        if (confirm('Are you sure you want to clear all records?')) {
+            localStorage.removeItem('attendanceRecords');
+            loadAttendance();
+        }
+    });
+
     // Load data on page load
     window.onload = loadAttendance;
 
